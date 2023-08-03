@@ -13,7 +13,7 @@ export const pca = new PublicClientApplication({
     clientId: "416b8c3a-1fc8-459d-b40f-7e5d9d6dd80f",
     authority:
       "https://stagingmyaccount.wegmans.com/stagewegmansonline.onmicrosoft.com/B2C_1A_WEGMANSSIGNUPSIGNINWITHPHONEVERIFICATION",
-    redirectUri: "https://introspecttestwebpoc.azurewebsites.net/",
+    redirectUri: "http://localhost:5001",
     knownAuthorities: ["stagingmyaccount.wegmans.com"],
   },
 });
