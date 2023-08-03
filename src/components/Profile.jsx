@@ -6,9 +6,9 @@ import { pca } from "../App";
 import { Loading } from "./Loading";
 import { Card, CardContent, Typography } from "@mui/material";
 
-const loginRequest = {
-  scopes: ["User.Read"],
-};
+// const loginRequest = {
+//   scopes: ["User.Read"],
+// };
 
 const ProfileContent = () => {
   const { instance, inProgress } = useMsal();
@@ -24,7 +24,7 @@ const ProfileContent = () => {
           );
         }
         const response = await pca.acquireTokenSilent({
-          ...loginRequest,
+          // ...loginRequest,
           account: account,
         });
         setToken(response.idToken);
