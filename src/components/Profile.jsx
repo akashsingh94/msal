@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { MsalAuthenticationTemplate, useMsal } from "@azure/msal-react";
 import { InteractionStatus, InteractionType } from "@azure/msal-browser";
-import Paper from "@mui/material/Paper";
 
 import { pca } from "../App";
 import { Loading } from "./Loading";
+import { Card, CardContent, Typography } from "@mui/material";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
@@ -32,7 +32,18 @@ const ProfileContent = () => {
     })();
   }, [inProgress, instance, token]);
 
-  return <Paper>{token}</Paper>;
+  return (
+    <Card sx={{ maxWidth: "80%" }}>
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          Your JWT token is:
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {token}
+        </Typography>
+      </CardContent>
+    </Card>
+  );
 };
 
 export function Profile() {

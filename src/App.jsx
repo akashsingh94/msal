@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { PublicClientApplication } from "@azure/msal-browser";
+import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
@@ -16,6 +16,12 @@ export const pca = new PublicClientApplication({
     redirectUri: "http://localhost:5001",
     knownAuthorities: ["stagingmyaccount.wegmans.com"],
   },
+});
+
+pca.addEventCallback((event) => {
+  if (event.eventType === EventType.LOGIN_SUCCESS) {
+    pca.setActiveAccount(event.payload.account);
+  }
 });
 
 const darkTheme = createTheme({
