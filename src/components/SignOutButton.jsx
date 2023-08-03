@@ -6,7 +6,7 @@ export function SignOutButton() {
   const { instance } = useMsal();
 
   const handleSignIn = useCallback(() => {
-    instance.logoutRedirect();
+    instance.logout();
   }, [instance]);
 
   return (
