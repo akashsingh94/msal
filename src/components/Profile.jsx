@@ -27,7 +27,7 @@ const ProfileContent = () => {
           //   ...loginRequest,
           account: account,
         });
-        setToken(response.accessToken);
+        setToken(response.idToken);
       }
     })();
   }, [inProgress, instance, token]);
@@ -36,7 +36,7 @@ const ProfileContent = () => {
     <Card sx={{ maxWidth: "80%" }}>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Your JWT token is:
+          Your token is:
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {token}

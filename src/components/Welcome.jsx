@@ -10,7 +10,7 @@ export function Welcome() {
   useEffect(() => {
     if (!isAuthenticated) return;
     const acc = instance.getActiveAccount();
-    if (acc) setUsername(acc.username);
+    if (acc) setUsername(acc?.idTokenClaims?.email);
   }, [instance, isAuthenticated]);
 
   if (!isAuthenticated) return null;
