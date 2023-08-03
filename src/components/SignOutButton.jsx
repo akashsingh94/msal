@@ -11,7 +11,7 @@ export function SignOutButton() {
 
   return (
     <Button variant="outlined" onClick={handleSignIn} color="inherit">
-      Sign In
+      Logout
     </Button>
   );
 }
