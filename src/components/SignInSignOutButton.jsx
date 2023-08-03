@@ -2,17 +2,14 @@ import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 import { InteractionStatus } from "@azure/msal-browser";
 import { Button } from "@mui/material";
+import { SignOutButton } from "./SignOutButton";
 
 export function SignInSignOutButton() {
   const { inProgress } = useMsal();
   const isAuthenticated = useIsAuthenticated();
 
   if (isAuthenticated) {
-    return (
-      <Button variant="outlined" color="inherit">
-        Sign Out
-      </Button>
-    );
+    return <SignOutButton />;
   } else if (
     inProgress !== InteractionStatus.Startup &&
     inProgress !== InteractionStatus.HandleRedirect
