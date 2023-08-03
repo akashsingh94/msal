@@ -10,11 +10,9 @@ export function Welcome() {
   useEffect(() => {
     if (!isAuthenticated) return;
     const acc = instance.getActiveAccount();
-    if (acc) setUsername(acc?.idTokenClaims?.email);
+    if (acc) setUsername(acc?.idTokenClaims?.give_name);
   }, [instance, isAuthenticated]);
 
   if (!isAuthenticated) return null;
-  return (
-    <Typography style={{ marginRight: 15 }}>Welcome, {username}</Typography>
-  );
+  return <Typography style={{ marginRight: 15 }}>Hello, {username}</Typography>;
 }

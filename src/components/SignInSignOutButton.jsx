@@ -1,7 +1,6 @@
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { SignInButton } from "./SignInButton";
 import { InteractionStatus } from "@azure/msal-browser";
-import { Button } from "@mui/material";
 import { SignOutButton } from "./SignOutButton";
 
 export function SignInSignOutButton() {
