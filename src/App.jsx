@@ -1,12 +1,13 @@
-import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 
 export const pca = new PublicClientApplication({
   auth: {
@@ -15,6 +16,9 @@ export const pca = new PublicClientApplication({
       "https://stagingmyaccount.wegmans.com/stagewegmansonline.onmicrosoft.com/B2C_1A_WEGMANSSIGNUPSIGNINWITHPHONEVERIFICATION",
     redirectUri: "http://localhost:5001",
     knownAuthorities: ["stagingmyaccount.wegmans.com"],
+  },
+  cache: {
+    cacheLocation: "localStorage",
   },
 });
 
