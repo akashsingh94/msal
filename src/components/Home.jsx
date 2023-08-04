@@ -15,11 +15,11 @@ export function Home() {
   const [changePassword, setChangePassword] = useState(false);
   const { instance } = useMsal();
 
-  //https://myaccount.wegmans.com/wegmansonline.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_WegmansChangePassword&state=B2C_1A_WegmansChangePassword&client_id=7c0edc2c-5aa9-4a85-9ab0-ae11c5bb251e&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fshop.wegmans.com%2Fsocial-redirect%2Fwegmans_idp&scope=7c0edc2c-5aa9-4a85-9ab0-ae11c5bb251e%20openid%20offline_access&response_type=code
-
   const handleSso = useCallback(() => {
     setLoading(true);
     instance.loginRedirect({
+      authority:
+        "https://stagingmyaccount.wegmans.com/stagewegmansonline.onmicrosoft.com/B2C_1A_WegmansSignupSigninWithPhoneVerification",
       redirectUri: "https://introspecttestwebpoc.azurewebsites.net/",
     });
   }, [instance]);

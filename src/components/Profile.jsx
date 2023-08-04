@@ -17,6 +17,7 @@ import "./Profile.css";
 const ProfileContent = () => {
   const { instance, inProgress } = useMsal();
   const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -27,16 +28,18 @@ const ProfileContent = () => {
             "No active account! Verify a user has been signed in and setActiveAccount has been called."
           );
         }
+        setLoading(true);
         const response = await pca.acquireTokenSilent({
           // ...loginRequest,
           account: account,
         });
         setToken(response.idToken);
+        setLoading(false);
       }
     })();
   }, [inProgress, instance, token]);
 
-  if (inProgress === InteractionStatus.AcquireToken) return <Loading />;
+  if (loading) return <Loading />;
   if (!token)
     return (
       <Alert severity="warning">
