@@ -1,21 +1,24 @@
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
+  useMsal,
 } from "@azure/msal-react";
 import { Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
+import { useCallback, useState } from "react";
+import { LoadingButton } from "@mui/lab";
 
 import "./Home.css";
-import { sso } from "../App";
-import { LoadingButton } from "@mui/lab";
-import { useCallback, useState } from "react";
 
 export function Home() {
   const [loading, setLoading] = useState(false);
+  const { instance } = useMsal();
   const handleSso = useCallback(() => {
     setLoading(true);
-    sso.loginRedirect();
-  }, []);
+    instance.loginRedirect({
+      redirectUri: "https://introspecttestwebpoc.azurewebsites.net/",
+    });
+  }, [instance]);
 
   return (
     <div className="app-home">
