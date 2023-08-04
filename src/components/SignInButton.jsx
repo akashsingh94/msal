@@ -1,17 +1,25 @@
 import { useMsal } from "@azure/msal-react";
-import { Button } from "@mui/material";
-import { useCallback } from "react";
+import { LoadingButton } from "@mui/lab";
+import { useCallback, useState } from "react";
 
 export function SignInButton() {
   const { instance } = useMsal();
+  const [signingIn, setSigningIn] = useState(false);
 
   const handleSignIn = useCallback(() => {
+    setSigningIn(true);
     instance.loginRedirect();
   }, [instance]);
 
   return (
-    <Button variant="outlined" onClick={handleSignIn} color="inherit">
+    <LoadingButton
+      loading={signingIn}
+      disabled={signingIn}
+      variant="outlined"
+      onClick={handleSignIn}
+      color="inherit"
+    >
       Sign In
-    </Button>
+    </LoadingButton>
   );
 }

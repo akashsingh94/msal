@@ -1,0 +1,24 @@
+.card-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  width: max-content;
+  height: max-content;
+  padding: 20px;
+  max-width: 75%;
+}
+
+.data-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 8px;
+}
+
+.data-title {
+  font-style: italic;
+}

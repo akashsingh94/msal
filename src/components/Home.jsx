@@ -5,9 +5,20 @@ import {
 import { Button, Typography } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
+import "./Home.css";
+import { sso } from "../App";
+import { LoadingButton } from "@mui/lab";
+import { useCallback, useState } from "react";
+
 export function Home() {
+  const [loading, setLoading] = useState(false);
+  const handleSso = useCallback(() => {
+    setLoading(true);
+    sso.loginRedirect();
+  }, []);
+
   return (
-    <div>
+    <div className="app-home">
       <AuthenticatedTemplate>
         <Button
           component={RouterLink}
@@ -17,6 +28,15 @@ export function Home() {
         >
           Request Profile Information
         </Button>
+        <LoadingButton
+          onClick={handleSso}
+          loading={loading}
+          disabled={loading}
+          variant="contained"
+          color="primary"
+        >
+          Test SSO
+        </LoadingButton>
       </AuthenticatedTemplate>
       <UnauthenticatedTemplate>
         <Typography variant="h6">

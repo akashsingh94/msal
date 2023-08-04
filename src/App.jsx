@@ -18,6 +18,16 @@ export const pca = new PublicClientApplication({
   },
 });
 
+export const sso = new PublicClientApplication({
+  auth: {
+    clientId: "416b8c3a-1fc8-459d-b40f-7e5d9d6dd80f",
+    authority:
+      "https://stagingmyaccount.wegmans.com/stagewegmansonline.onmicrosoft.com/B2C_1A_WEGMANSSIGNUPSIGNINWITHPHONEVERIFICATION",
+    redirectUri: "https://introspecttestwebpoc.azurewebsites.net/",
+    knownAuthorities: ["stagingmyaccount.wegmans.com"],
+  },
+});
+
 pca.addEventCallback((event) => {
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
@@ -25,9 +35,6 @@ pca.addEventCallback((event) => {
 });
 
 const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
   typography: {
     fontFamily: [
       '"Poppins"',

@@ -8,7 +8,7 @@ export function Loading() {
       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
       open
     >
-      <CircularProgress color="inherit" />
+      <CircularProgress color="primary" />
     </Backdrop>
   );
 }
