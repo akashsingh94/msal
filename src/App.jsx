@@ -8,6 +8,7 @@ import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
 import "./App.css";
+import { Typography } from "@mui/material";
 
 export const pca = new PublicClientApplication({
   auth: {
@@ -54,7 +55,14 @@ function App() {
                 <Route index element={<Home />} />
                 <Route path="profile" element={<Profile />} />
 
-                <Route path="*" element={<p>404 | Not Found</p>} />
+                <Route
+                  path="*"
+                  element={
+                    <Typography variant="h4" component="p">
+                      404 | Not Found
+                    </Typography>
+                  }
+                />
               </Route>
             </Routes>
           </BrowserRouter>

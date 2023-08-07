@@ -13,8 +13,18 @@ export function AppHeader() {
         <Toolbar>
           <Typography
             variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, textAlign: "start" }}
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+              flexGrow: 1,
+            }}
+            noWrap
+            component="a"
+            href="/"
           >
             Auth POC
           </Typography>

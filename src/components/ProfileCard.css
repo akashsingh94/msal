@@ -1,0 +1,32 @@
+.component--user-profile-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-profile-card-title-wrapper {
+  border-bottom: 3px solid rgb(238, 238, 238);
+  margin-bottom: 32px;
+}
+
+.component--user-profile-data .user-profile-card-title {
+  border-bottom: 3px solid rgb(241, 89, 34);
+  margin: 0 0 -3px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  width: max-content;
+}
+
+.user-profile-data {
+  grid-template-columns: max-content 1fr;
+  display: grid;
+  gap: 40px;
+}
+
+.user-profile-data-title {
+  font-style: italic;
+  text-align: left;
+}
+
+.user-profile-data-description {
+  text-align: left;
+}

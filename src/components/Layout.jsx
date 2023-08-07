@@ -6,6 +6,8 @@ import "./Layout.css";
 import { useMsal } from "@azure/msal-react";
 import { InteractionRequiredAuthError } from "@azure/msal-browser";
 
+//https://myaccount.wegmans.com/wegmansonline.onmicrosoft.com/b2c_1a_wegmanssignupsigninwithphoneverification/v2.0/.well-known/openid-configuration
+
 export function Layout() {
   const { instance } = useMsal();
 
