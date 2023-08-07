@@ -61,14 +61,9 @@ const ProfileContent = () => {
     "First name": decoded.given_name,
     "Last name": decoded.family_name,
     Email: decoded.email,
-    "Shopper Club Number": "1234567",
+    "Shopper Club Number": "",
   };
-  return (
-    <div>
-      <ProfileCard title="Contact Information" data={contactInfo} />
-      <ProfileCard title="Contact Address" data={contactInfo} />
-    </div>
-  );
+  return <ProfileCard title="Contact Information" data={contactInfo} />;
 };
 
 export function Profile() {
