@@ -18,8 +18,6 @@ export function Home() {
   const handleSso = useCallback(() => {
     setLoading(true);
     instance.loginRedirect({
-      authority:
-        "https://stagingmyaccount.wegmans.com/stagewegmansonline.onmicrosoft.com/B2C_1A_WegmansSignupSigninWithPhoneVerification",
       redirectUri: "https://introspecttestwebpoc.azurewebsites.net/",
     });
   }, [instance]);
