@@ -19,7 +19,8 @@
 .user-profile-data {
   grid-template-columns: max-content 1fr;
   display: grid;
-  gap: 40px;
+  grid-column-gap: 10px;
+  grid-row-gap: 40px;
 }
 
 .user-profile-data-title {

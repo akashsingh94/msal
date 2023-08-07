@@ -9,6 +9,8 @@ import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
 import "./App.css";
 import { Typography } from "@mui/material";
+import { SSO } from "./components/SSO";
+import { ChangePassword } from "./components/ChangePassword";
 
 export const pca = new PublicClientApplication({
   auth: {
@@ -54,7 +56,8 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path="profile" element={<Profile />} />
-
+                <Route path="sso" element={<SSO />} />
+                <Route path="change-password" element={<ChangePassword />} />
                 <Route
                   path="*"
                   element={

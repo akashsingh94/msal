@@ -61,9 +61,24 @@ const ProfileContent = () => {
     "First name": decoded.given_name,
     "Last name": decoded.family_name,
     Email: decoded.email,
-    "Shopper Club Number": "",
+    "Shopper Club Number": "103227399",
   };
-  return <ProfileCard title="Contact Information" data={contactInfo} />;
+  const contactaddress = {
+    "First name": decoded.given_name,
+    "Last name": decoded.family_name,
+    Adress: "21 Wesmont Drive",
+    "Apartment Number": "dummy 112",
+    "PO Box": "Test",
+    City: "Wood Ridge",
+    State: "NJ",
+    "Zip code": "07075",
+  };
+  return (
+    <div>
+      <ProfileCard title="Contact Information" data={contactInfo} />
+      <ProfileCard title="Contact Address" data={contactaddress} />
+    </div>
+  );
 };
 
 export function Profile() {
