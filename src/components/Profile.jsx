@@ -5,10 +5,10 @@ import jwt_decode from "jwt-decode";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 
-import { pca } from "../App";
 import { Loading } from "./Loading";
 import "./Profile.css";
 import { ProfileCard } from "./ProfileCard";
+import { pca } from "../index";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
