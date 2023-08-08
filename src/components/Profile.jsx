@@ -6,9 +6,8 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 
 import { Loading } from "./Loading";
-import "./Profile.css";
 import { ProfileCard } from "./ProfileCard";
-import { pca } from "../index";
+import "./Profile.css";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
@@ -18,7 +17,8 @@ const ProfileContent = () => {
   const { instance, inProgress } = useMsal();
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
-  const account = useRef(pca.getActiveAccount());
+
+  const account = useRef(instance.getActiveAccount());
 
   console.log(account.current);
 
@@ -31,7 +31,7 @@ const ProfileContent = () => {
           );
         }
         setLoading(true);
-        const response = await pca.acquireTokenSilent({
+        const response = await instance.acquireTokenSilent({
           // ...loginRequest,
           account: account.current,
         });

@@ -1,19 +1,14 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import {
-  MsalProvider,
-  useMsal,
-  useMsalAuthentication,
-} from "@azure/msal-react";
-import { useEffect, useRef } from "react";
+import { useMsal, useMsalAuthentication } from "@azure/msal-react";
+import { useEffect } from "react";
 import {
   InteractionType,
   InteractionRequiredAuthError,
 } from "@azure/msal-browser";
 
-import "./App.css";
 import { Routers } from "./Routers";
-import { pca } from "./index";
+import "./App.css";
 
 const darkTheme = createTheme({
   typography: {
@@ -30,18 +25,17 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  // const { instance } = useMsal();
+  const { instance } = useMsal();
   // const inProgress = useRef(false);
   const { login, result, error } = useMsalAuthentication(
     InteractionType.Silent,
     {}
   );
   useEffect(() => {
-    pca.setActiveAccount(result);
-  }, [result]);
+    if (result) instance.setActiveAccount(result);
+  }, [instance, result]);
 
   useEffect(() => {
-    debugger;
     if (error instanceof InteractionRequiredAuthError) {
       login(InteractionType.Redirect, {});
     }
