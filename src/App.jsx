@@ -1,11 +1,15 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { useIsAuthenticated, useMsal } from "@azure/msal-react";
+import { MsalProvider, useMsal } from "@azure/msal-react";
 import { useEffect } from "react";
-import { InteractionRequiredAuthError } from "@azure/msal-browser";
+import {
+  InteractionType,
+  InteractionRequiredAuthError,
+} from "@azure/msal-browser";
+import { useMsal, useMsalAuthentication } from "@azure/msal-react";
 
-import { Routers } from "./Routers";
 import "./App.css";
+import { Routers } from "./Routers";
 
 const darkTheme = createTheme({
   typography: {
@@ -21,32 +25,44 @@ const darkTheme = createTheme({
   },
 });
 
-function App() {
-  const { instance } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
+function App({ msalInstance }) {
+  // const { instance } = useMsal();
+  const { login, result, error } = useMsalAuthentication(
+    InteractionType.Silent,
+    {}
+  );
 
   useEffect(() => {
-    (async () => {
-      if (isAuthenticated) return; // already authenticated
-      try {
-        await instance.ssoSilent({});
-      } catch (err) {
-        if (err instanceof InteractionRequiredAuthError) {
-          await instance.loginRedirect();
-        } else {
-          console.log("Error during SSO: ", err);
-        }
-      }
-    })();
-  }, [instance, isAuthenticated]);
+    if (error instanceof InteractionRequiredAuthError) {
+      login(InteractionType.Redirect, request);
+    }
+  }, [error]);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const isAuthenticated = !!instance && !!instance.getActiveAccount();
+  //     if (isAuthenticated) return; // already authenticated
+  //     try {
+  //       await instance.ssoSilent({});
+  //     } catch (err) {
+  //       if (err instanceof InteractionRequiredAuthError) {
+  //         await instance.loginRedirect();
+  //       } else {
+  //         console.log("Error during SSO: ", err);
+  //       }
+  //     }
+  //   })();
+  // }, [instance]);
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
-      <div className="App">
-        <Routers />
-      </div>
-    </ThemeProvider>
+    <MsalProvider instance={msalInstance}>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <div className="App">
+          <Routers />
+        </div>
+      </ThemeProvider>
+    </MsalProvider>
   );
 }
 

@@ -4,7 +4,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
-import { MsalProvider } from "@azure/msal-react";
 
 export const pca = new PublicClientApplication({
   auth: {
@@ -19,6 +18,11 @@ export const pca = new PublicClientApplication({
   },
 });
 
+if (!pca.getActiveAccount() && pca.getAllAccounts().length > 0) {
+  // Account selection logic is app dependent. Adjust as needed for different use cases.
+  pca.setActiveAccount(pca.getActiveAccount()[0]);
+}
+
 pca.addEventCallback((event) => {
   if (event.eventType === EventType.LOGIN_SUCCESS) {
     pca.setActiveAccount(event.payload.account);
@@ -28,9 +32,7 @@ pca.addEventCallback((event) => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <MsalProvider instance={pca}>
-      <App />
-    </MsalProvider>
+    <App msalInstance={pca} />
   </React.StrictMode>
 );
 
