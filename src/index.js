@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { PublicClientApplication, EventType } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
 
 export const pca = new PublicClientApplication({
   auth: {
@@ -32,7 +33,9 @@ pca.addEventCallback((event) => {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App msalInstance={pca} />
+    <MsalProvider instance={pca}>
+      <App />
+    </MsalProvider>
   </React.StrictMode>
 );
 

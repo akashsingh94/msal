@@ -1,15 +1,19 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import { MsalProvider, useMsal } from "@azure/msal-react";
-import { useEffect } from "react";
+import {
+  MsalProvider,
+  useMsal,
+  useMsalAuthentication,
+} from "@azure/msal-react";
+import { useEffect, useRef } from "react";
 import {
   InteractionType,
   InteractionRequiredAuthError,
 } from "@azure/msal-browser";
-import { useMsal, useMsalAuthentication } from "@azure/msal-react";
 
 import "./App.css";
 import { Routers } from "./Routers";
+import { pca } from "./index";
 
 const darkTheme = createTheme({
   typography: {
@@ -25,23 +29,30 @@ const darkTheme = createTheme({
   },
 });
 
-function App({ msalInstance }) {
+function App() {
   // const { instance } = useMsal();
+  // const inProgress = useRef(false);
   const { login, result, error } = useMsalAuthentication(
     InteractionType.Silent,
     {}
   );
+  useEffect(() => {
+    pca.setActiveAccount(result);
+  }, [result]);
 
   useEffect(() => {
+    debugger;
     if (error instanceof InteractionRequiredAuthError) {
-      login(InteractionType.Redirect, request);
+      login(InteractionType.Redirect, {});
     }
-  }, [error]);
+  }, [error, login]);
 
   // useEffect(() => {
   //   (async () => {
+  //     debugger;
   //     const isAuthenticated = !!instance && !!instance.getActiveAccount();
-  //     if (isAuthenticated) return; // already authenticated
+  //     if (isAuthenticated || inProgress.current) return; // already authenticated
+  //     inProgress.current = true;
   //     try {
   //       await instance.ssoSilent({});
   //     } catch (err) {
@@ -50,19 +61,19 @@ function App({ msalInstance }) {
   //       } else {
   //         console.log("Error during SSO: ", err);
   //       }
+  //     } finally {
+  //       inProgress.current = false;
   //     }
   //   })();
   // }, [instance]);
 
   return (
-    <MsalProvider instance={msalInstance}>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <div className="App">
-          <Routers />
-        </div>
-      </ThemeProvider>
-    </MsalProvider>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="App">
+        <Routers />
+      </div>
+    </ThemeProvider>
   );
 }
 
