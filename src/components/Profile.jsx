@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { MsalAuthenticationTemplate, useMsal } from "@azure/msal-react";
-import { InteractionStatus, InteractionType } from "@azure/msal-browser";
+import {
+  AuthenticatedTemplate,
+  UnauthenticatedTemplate,
+  useMsal,
+} from "@azure/msal-react";
+import { InteractionStatus } from "@azure/msal-browser";
 import jwt_decode from "jwt-decode";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
@@ -8,6 +12,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import { Loading } from "./Loading";
 import { ProfileCard } from "./ProfileCard";
 import "./Profile.css";
+import { Typography } from "@mui/material";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
@@ -40,13 +45,7 @@ const ProfileContent = () => {
   }, [account, inProgress, instance, token]);
 
   if (loading) return <Loading />;
-  if (!token)
-    return (
-      <Alert severity="warning">
-        <AlertTitle>Warning</AlertTitle>
-        Unable to get — <strong>JWT token!</strong>
-      </Alert>
-    );
+  if (!token) return null;
   var decoded = jwt_decode(token);
   if (!decoded)
     return (
@@ -81,11 +80,15 @@ const ProfileContent = () => {
 
 export function Profile() {
   return (
-    <MsalAuthenticationTemplate
-      interactionType={InteractionType.Redirect}
-      loadingComponent={Loading}
-    >
-      <ProfileContent />
-    </MsalAuthenticationTemplate>
+    <>
+      <AuthenticatedTemplate>
+        <ProfileContent />
+      </AuthenticatedTemplate>
+      <UnauthenticatedTemplate>
+        <Typography variant="h6">
+          <center>Please sign-in to see your profile information.</center>
+        </Typography>
+      </UnauthenticatedTemplate>
+    </>
   );
 }

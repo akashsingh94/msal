@@ -16,6 +16,8 @@ export const pca = new PublicClientApplication({
   },
   cache: {
     cacheLocation: "localStorage",
+    storeAuthStateInCookie: true,
+    secureCookies: true,
   },
 });
 

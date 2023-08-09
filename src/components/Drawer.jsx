@@ -6,6 +6,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import { Link } from "react-router-dom";
+import { useIsAuthenticated } from "@azure/msal-react";
 
 const drawerWidth = 240;
 
@@ -17,6 +18,10 @@ const drawerItems = [
 ];
 
 export function Drawer() {
+  const isAuthenticated = useIsAuthenticated();
+
+  if (!isAuthenticated) return null;
+
   return (
     <MuiDrawer
       variant="permanent"
