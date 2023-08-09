@@ -20,8 +20,6 @@ const ProfileContent = () => {
 
   const account = useRef(instance.getActiveAccount());
 
-  console.log(account.current);
-
   useEffect(() => {
     (async () => {
       if (!token && inProgress === InteractionStatus.None) {

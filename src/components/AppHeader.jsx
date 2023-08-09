@@ -8,7 +8,7 @@ import { Welcome } from "./Welcome";
 
 export function AppHeader() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <AppBar position="static">
         <Toolbar>
           <Typography

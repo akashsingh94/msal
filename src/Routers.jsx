@@ -6,6 +6,7 @@ import { Profile } from "./components/Profile";
 import { Typography } from "@mui/material";
 import { SSO } from "./components/SSO";
 import { ChangePassword } from "./components/ChangePassword";
+import { AccountSecurity } from "./components/AccountSecurity";
 
 export function Routers() {
   return (
@@ -16,6 +17,7 @@ export function Routers() {
           <Route path="profile" element={<Profile />} />
           <Route path="sso" element={<SSO />} />
           <Route path="change-password" element={<ChangePassword />} />
+          <Route path="account-security" element={<AccountSecurity />} />
           <Route
             path="*"
             element={
