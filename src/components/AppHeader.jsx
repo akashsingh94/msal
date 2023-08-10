@@ -9,7 +9,7 @@ import { Welcome } from "./Welcome";
 export function AppHeader() {
   return (
     <Box sx={{ flexGrow: 1, zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
           <Typography
             variant="h6"
@@ -26,7 +26,10 @@ export function AppHeader() {
             component="a"
             href="/"
           >
-            Auth POC
+            <img
+              src="https://shop.wegmans.com/images/header-logo.f92b8dc9.svg"
+              alt="go to Wegmans home"
+            />
           </Typography>
           <Welcome />
           <SignInSignOutButton />

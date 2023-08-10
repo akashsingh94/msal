@@ -10,7 +10,7 @@ export function SignOutButton() {
   }, [instance]);
 
   return (
-    <Button variant="outlined" onClick={handleSignIn} color="inherit">
+    <Button variant="contained" onClick={handleSignIn} color="primary">
       Logout
     </Button>
   );

@@ -15,11 +15,11 @@ export function SignInButton() {
     <LoadingButton
       loading={signingIn}
       disabled={signingIn}
-      variant="outlined"
+      variant="contained"
       onClick={handleSignIn}
-      color="inherit"
+      color="primary"
     >
-      Sign In
+      Sign In / Register
     </LoadingButton>
   );
 }

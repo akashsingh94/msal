@@ -13,6 +13,7 @@ import { Loading } from "./Loading";
 import { ProfileCard } from "./ProfileCard";
 import "./Profile.css";
 import { Typography } from "@mui/material";
+import { EditProfileButton } from "./EditProfileButton";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
@@ -74,6 +75,7 @@ const ProfileContent = () => {
     <div>
       <ProfileCard title="Contact Information" data={contactInfo} />
       <ProfileCard title="Contact Address" data={contactaddress} />
+      <EditProfileButton />
     </div>
   );
 };

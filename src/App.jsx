@@ -17,6 +17,14 @@ const darkTheme = createTheme({
       '"Segoe UI Symbol"',
     ].join(","),
   },
+  palette: {
+    primary: {
+      main: "#c62828",
+      // light: will be calculated from palette.primary.main,
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
+    },
+  },
 });
 
 function App() {
