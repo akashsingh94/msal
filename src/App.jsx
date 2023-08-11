@@ -28,7 +28,7 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  useSso(); // do sso
+  //useSso(); // do sso
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />

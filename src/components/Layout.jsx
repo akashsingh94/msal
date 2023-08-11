@@ -9,9 +9,11 @@ export function Layout() {
   return (
     <div className="app-layout">
       <AppHeader />
-      <main>
+      <main className="app-main">
         <Drawer />
-        <Outlet />
+        <div className="app-content">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

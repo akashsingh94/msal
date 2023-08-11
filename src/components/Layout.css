@@ -3,3 +3,12 @@
   flex-direction: column;
   gap: 5px;
 }
+
+.app-main {
+  display: flex;
+  gap: 15px;
+}
+
+.app-content {
+  flex: 1;
+}

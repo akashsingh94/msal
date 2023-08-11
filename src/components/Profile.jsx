@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import {
   AuthenticatedTemplate,
   UnauthenticatedTemplate,
-  useMsal,
 } from "@azure/msal-react";
-import { InteractionStatus } from "@azure/msal-browser";
 import jwt_decode from "jwt-decode";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
@@ -14,36 +11,14 @@ import { ProfileCard } from "./ProfileCard";
 import "./Profile.css";
 import { Typography } from "@mui/material";
 import { EditProfileButton } from "./EditProfileButton";
+import { useAcquireTokenSilently } from "../hooks/useAcquireTokenSilently";
 
 // const loginRequest = {
 //   scopes: ["User.Read"],
 // };
 
 const ProfileContent = () => {
-  const { instance, inProgress } = useMsal();
-  const [token, setToken] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  const account = useRef(instance.getActiveAccount());
-
-  useEffect(() => {
-    (async () => {
-      if (!token && inProgress === InteractionStatus.None) {
-        if (!account.current) {
-          throw Error(
-            "No active account! Verify a user has been signed in and setActiveAccount has been called."
-          );
-        }
-        setLoading(true);
-        const response = await instance.acquireTokenSilent({
-          // ...loginRequest,
-          account: account.current,
-        });
-        setToken(response.idToken);
-        setLoading(false);
-      }
-    })();
-  }, [account, inProgress, instance, token]);
+  const { loading, token } = useAcquireTokenSilently();
 
   if (loading) return <Loading />;
   if (!token) return null;
