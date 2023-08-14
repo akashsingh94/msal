@@ -42,7 +42,7 @@ export function Addresses() {
     if (!token || !!apiData.length) return;
     setLoadingData(true);
     fetch("/oauth/token/getaddress", {
-      headers: { Authentication: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((resp) => resp.json())
       .then((data) => {
