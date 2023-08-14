@@ -68,3 +68,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### msal auth library `access token caching`
+
+As per documentation, every time you want to make an API request, you should call acquireTokenSilent. One of three situations will happen:
+
+- If MSAL has an existing token in it's own cache that matches the parameters you give it, MSAL will provide the token right away.
+
+- If a token refresh is needed (e.g. because the cached access token is expired, or because you need an access token for a different API), MSAL will attempt to do a silent token refresh. If this succeeds silently, MSAL provides the fresh access token.
+
+- If MSAL doesn't have a cached valid access token, and MSAL can't silently refresh it (e.g. the user has not signed in, they've signed out, or the user needs to consent to a new permission), then MSAL will let you know and you can handle that situation as needed (e.g. use acquireTokenPopup to use a popup, or acquireTokenRedirect to use a redirect).

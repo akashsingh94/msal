@@ -15,6 +15,8 @@ const drawerItems = [
   { name: "SSO", href: "/sso" },
   { name: "Change Password", href: "/change-password" },
   { name: "Account Security", href: "/account-security" },
+  { name: "Delivery Addresses", href: "/delivery-addresses" },
+  { name: "JWT Token", href: "/jwt-token" },
 ];
 
 export function Drawer() {

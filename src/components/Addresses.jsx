@@ -4,9 +4,10 @@ import {
 } from "@azure/msal-react";
 import { Card, CardContent, Typography } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
+
 import { useAcquireTokenSilently } from "../hooks/useAcquireTokenSilently";
 import { Loading } from "./Loading";
-import "./Test.css";
+import "./Addresses.css";
 
 const data = [
   {
@@ -31,7 +32,7 @@ const data = [
   },
 ];
 
-export function Test() {
+export function Addresses() {
   const [loadingData, setLoadingData] = useState(false);
   const [apiData, setApiData] = useState([]);
 

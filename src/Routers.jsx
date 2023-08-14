@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Typography } from "@mui/material";
 
 import { Layout } from "./components/Layout";
 import { Home } from "./components/Home";
 import { Profile } from "./components/Profile";
-import { Typography } from "@mui/material";
 import { SSO } from "./components/SSO";
 import { ChangePassword } from "./components/ChangePassword";
 import { AccountSecurity } from "./components/AccountSecurity";
-import { Test } from "./components/Test";
+import { Addresses } from "./components/Addresses";
+import { JwtToken } from "./components/JwtToken";
 
 export function Routers() {
   return (
@@ -19,7 +20,8 @@ export function Routers() {
           <Route path="sso" element={<SSO />} />
           <Route path="change-password" element={<ChangePassword />} />
           <Route path="account-security" element={<AccountSecurity />} />
-          <Route path="test" element={<Test />} />
+          <Route path="delivery-addresses" element={<Addresses />} />
+          <Route path="jwt-token" element={<JwtToken />} />
           <Route
             path="*"
             element={

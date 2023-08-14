@@ -13,9 +13,11 @@ export function useAcquireTokenSilently() {
         setLoading(true);
         const account = instance.getActiveAccount();
         if (!account) {
-          throw Error(
+          console.log(
             "No active account! Verify a user has been signed in and setActiveAccount has been called."
           );
+          setLoading(false);
+          return;
         }
         const response = await instance.acquireTokenSilent({
           // ...loginRequest,
