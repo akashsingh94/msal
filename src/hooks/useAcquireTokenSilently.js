@@ -26,7 +26,7 @@ export function useAcquireTokenSilently() {
             "https://stagewegmansonline.onmicrosoft.com/cert.api.digitaldevelopment.wegmans.cloud/Users.Profile.Read",
           ],
         });
-        setToken(response.idToken);
+        setToken(response.accessToken);
         setLoading(false);
       }
     })();

@@ -17,6 +17,7 @@ const drawerItems = [
   { name: "Account Security", href: "/account-security" },
   { name: "Delivery Addresses", href: "/delivery-addresses" },
   { name: "JWT Token", href: "/jwt-token" },
+  { name: "Add Address", href: "/add-address" },
 ];
 
 export function Drawer() {

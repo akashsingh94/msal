@@ -9,6 +9,7 @@ import { ChangePassword } from "./components/ChangePassword";
 import { AccountSecurity } from "./components/AccountSecurity";
 import { Addresses } from "./components/Addresses";
 import { JwtToken } from "./components/JwtToken";
+import { GoogleMaps } from "./components/AddressAutocomplete";
 
 export function Routers() {
   return (
@@ -22,6 +23,7 @@ export function Routers() {
           <Route path="account-security" element={<AccountSecurity />} />
           <Route path="delivery-addresses" element={<Addresses />} />
           <Route path="jwt-token" element={<JwtToken />} />
+          <Route path="add-address" element={<GoogleMaps />} />
           <Route
             path="*"
             element={
